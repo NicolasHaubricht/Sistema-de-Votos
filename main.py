@@ -1,13 +1,13 @@
 # Biblioteca Datetime
 from datetime import datetime
 
-# Soma dos Candidatos
+# Função que indica a Soma dos Candidatos
 def somaDosCanditados (hugo, ze, luiz):
     print(f'Votos totais do Canditado Huguinho: {len(hugo)}')
     print(f'Votos totais do Canditado Zezinho: {len(ze)}')
     print(f'Votos totais do Canditado Luizinho: {len(luiz)}')
 
-# Informa o Vencedor
+# Função que Informa o Vencedor
 def informarVencedor(hugo, ze, luiz, quantidadeVotos):
     if len(hugo) > len(ze) and len(hugo) > len(luiz):
         print(f'O vencedor foi o candidato Huguinho com uma porcentagem de {(len(hugo) / quantidadeVotos) * 100:.2f}% ')
@@ -23,11 +23,11 @@ def informarVencedor(hugo, ze, luiz, quantidadeVotos):
     else:
         print(f'Não houve vencedor')
 
-# Quantidade de Votos Invalidos
+# Função que Informa a Quantidade de Votos Invalidos
 def quantidadeVotosInvalidos (votosInvalidos):
     print(f'Quantidade Votos Invalidos: {votosInvalidos}')
 
-# Quantidade de Votos Nulos
+# Função que Informa a Quantidade de Votos Nulos
 def quantidadeVotosNulos (nulo):
     print(f'Votos totais Nulo: {len(nulo)}')
 
@@ -44,6 +44,7 @@ votosInvalidos = 0
 
 # Programa Principal
 while continuar == 'Sim':
+        # Menu de Opções
         opcao = str(input('''
             H - Votar em Huguinho
             Z - Votar em Zezinho
@@ -58,6 +59,7 @@ while continuar == 'Sim':
         # Horario que o voto foi computado
         horario = datetime.now().strftime("%H:%M:%S")
         
+        # Case
         match opcao:
             case 'H':
                 hugo.append(1)
@@ -83,4 +85,5 @@ while continuar == 'Sim':
                 print('Digite Uma Opção Válida')
                 votosInvalidos += 1
                 quantidadeVotos -= 1
+                
         quantidadeVotos += 1
