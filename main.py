@@ -2,23 +2,23 @@
 from datetime import datetime
 
 # Função que indica a Soma dos Candidatos
-def somaDosCanditados (hugo, ze, luiz):
-    print(f'Votos totais do Canditado Huguinho: {len(hugo)}')
-    print(f'Votos totais do Canditado Zezinho: {len(ze)}')
-    print(f'Votos totais do Canditado Luizinho: {len(luiz)}')
+def somaDosCanditados (canditato_1, canditato_2, canditato_3):
+    print(f'Votos totais do Canditado 1: {len(canditato_1)}')
+    print(f'Votos totais do Canditado 2: {len(canditato_2)}')
+    print(f'Votos totais do Canditado 3: {len(canditato_3)}')
 
 # Função que Informa o Vencedor
-def informarVencedor(hugo, ze, luiz, quantidadeVotos):
-    if len(hugo) > len(ze) and len(hugo) > len(luiz):
-        print(f'O vencedor foi o candidato Huguinho com uma porcentagem de {(len(hugo) / quantidadeVotos) * 100:.2f}% ')
+def informarVencedor(canditato_1, canditato_2, canditato_3, quantidadeVotos):
+    if len(canditato_1) > len(canditato_2) and len(canditato_1) > len(canditato_3):
+        print(f'O vencedor foi o Candidato 1 com uma porcentagem de {(len(canditato_1) / quantidadeVotos) * 100:.2f}% ')
 
-    elif len(ze) > len(hugo) and len(ze) > len(luiz):
-        print(f'O vencedor foi o candidato Zezinho com uma porcentagem de {(len(ze) / quantidadeVotos) * 100:.2f}%')
+    elif len(canditato_2) > len(canditato_1) and len(canditato_2) > len(canditato_3):
+        print(f'O vencedor foi o Candidato 2 com uma porcentagem de {(len(canditato_2) / quantidadeVotos) * 100:.2f}%')
 
-    elif len(luiz) > len(hugo) and len(luiz) > len(ze):
-        print(f'O vencedor foi o candidato Luizinho com uma porcentagem de {(len(luiz) / quantidadeVotos) * 100:.2f}%')
+    elif len(canditato_3) > len(canditato_1) and len(canditato_3) > len(canditato_2):
+        print(f'O vencedor foi o Candidato 3 com uma porcentagem de {(len(canditato_3) / quantidadeVotos) * 100:.2f}%')
 
-    elif len(luiz) == len(hugo) or len(luiz) == len(ze) or len(hugo) == len(ze):
+    elif len(canditato_1) == len(canditato_2) or len(canditato_2) == len(canditato_3) or len(canditato_1) == len(canditato_3):
         print(f'Acontecerá Segundo Turno')
     else:
         print(f'Não houve vencedor')
@@ -32,9 +32,9 @@ def quantidadeVotosNulos (nulo):
     print(f'Votos totais Nulo: {len(nulo)}')
 
 # Listas
-hugo = []
-ze = []
-luiz = []
+canditato_1 = []
+canditato_2 = []
+canditato_3 = []
 nulo = []
 
 # Variaveis
@@ -45,45 +45,45 @@ votosInvalidos = 0
 # Programa Principal
 while continuar == 'Sim':
         # Menu de Opções
-        opcao = str(input('''
-            H - Votar em Huguinho
-            Z - Votar em Zezinho
-            L - Votar em Luizinho
+        opcao = int(input('''
+            1 - Votar em Candidato 1
+            2 - Votar em Candidato 2
+            3 - Votar em Candidato 3
             
-            N - Votar NULO
+            0 - Votar NULO
             
-            S - Encerrar votação
+            99 - Encerrar votação
             
-            VOTO: ''')).upper()
+            VOTO: '''))
 
         # Horario que o voto foi computado
         horario = datetime.now().strftime("%H:%M:%S")
         
         # Case
         match opcao:
-            case 'H':
-                hugo.append(1)
+            case 1:
+                canditato_1.append(1)
                 print(f'Voto Computado / Horário: {horario}')
-            case 'Z':
-                ze.append(1)
+            case 2:
+                canditato_2.append(1)
                 print(f'Voto Computado / Horário: {horario}')
-            case 'L':
-                luiz.append(1)
+            case 3:
+                canditato_3.append(1)
                 print(f'Voto Computado / Horário: {horario}')
-            case 'N':
+            case 0:
                 nulo.append(1)
                 print(f'Voto Computado / Horário: {horario}')
-            case 'S':
+            case 99:
                 continuar = "parar"
 
                 # Exibir Resultado
-                somaDosCanditados(hugo, ze, luiz)
-                informarVencedor(hugo, ze, luiz, quantidadeVotos)
+                somaDosCanditados(canditato_1, canditato_2, canditato_3)
+                informarVencedor(canditato_1, canditato_2, canditato_3, quantidadeVotos)
                 quantidadeVotosInvalidos(votosInvalidos)
                 quantidadeVotosNulos(nulo)
             case _:
                 print('Digite Uma Opção Válida')
                 votosInvalidos += 1
                 quantidadeVotos -= 1
-                
+
         quantidadeVotos += 1
